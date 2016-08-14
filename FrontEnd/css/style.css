@@ -1,0 +1,13 @@
+body{
+  background-color: blue;
+}
+.loginPageMain{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 800px;
+  width: 100%;
+}
+.loginBox{
+  background-color: white;
+}
