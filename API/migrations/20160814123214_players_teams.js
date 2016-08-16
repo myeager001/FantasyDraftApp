@@ -3,11 +3,12 @@ exports.up = function(knex, Promise) {
     teams.increments().primary();
     teams.string('full_name');
     teams.string('api_key');
-    teams.string('confrence');
+    teams.string('conference');
     teams.string('division');
     teams.timestamps();
   }).createTable('players', function(players){
   players.increments().primary();
+  players.integer('api_id').notNullable();
   players.integer('team_id').references('id').inTable('teams').onDelete('cascade').notNullable();
   players.string('first_name').notNullable();
   players.string('last_name').notNullable();
