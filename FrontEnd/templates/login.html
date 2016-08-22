@@ -1,13 +1,41 @@
 <div class="loginPageMain">
-  <div class="loginBox">
-    <h1>Super User please login</h1>
-    <div class="input-group">
-      <span class="input-group-addon">User Name</span>
-      <input type="text" class="form-control" placeholder="User Name">
-    </div>
-    <div class="input-group">
-      <span class="input-group-addon">Password</span>
-      <input type="password" class="form-control" placeholder="Password">
-    </div>
+  <h1>Fantasy Football Draft App</h1>
+  <div class="loginBox" ng-show='isLogin'>
+    <form ng-submit=login() name='loginForm'>
+      <h1>Please Login</h1>
+      <div class="input-group">
+        <span class="input-group-addon">Email</span>
+        <input type="text" class="form-control" placeholder="User Name">
+      </div>
+      <div class="input-group">
+        <span class="input-group-addon">Password</span>
+        <input type="password" class="form-control" placeholder="Password">
+      </div>
+      <input type="submit">
+    </form>
+    <btn ng-click='isLogin = !isLogin'>Sign Up</btn>
+  </div>
+  <div class="loginBox" ng-show='!isLogin'>
+    <form ng-submit=signup() name='loginForm'>
+      <h1>Sign Up </h1>
+      <div class="input-group">
+        <span class="input-group-addon">First Name</span>
+        <input type="password" class="form-control" placeholder="Password">
+      </div>
+      <div class="input-group">
+        <span class="input-group-addon">Last Name</span>
+        <input type="password" class="form-control" placeholder="Password">
+      </div>
+      <div class="input-group">
+        <span class="input-group-addon">Email</span>
+        <input type="text" class="form-control" placeholder="User Name">
+      </div>
+      <div class="input-group">
+        <span class="input-group-addon">Password</span>
+        <input type="password" class="form-control" placeholder="Password">
+      </div>
+      <input type="submit">
+    </form>
+    <btn ng-click='isLogin = !isLogin'>Login</btn>
   </div>
 </div>
