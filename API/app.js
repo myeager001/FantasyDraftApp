@@ -4,8 +4,8 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var jwt = require('jsonwebtoken');
 
-var routes = require('./routes/index');
 var users = require('./routes/users');
 var players = require('./routes/players');
 var authen = require('./routes/auth');
@@ -24,9 +24,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', routes);
-app.use('/users', users);
-app.use('/players', players);
+app.use('/users', tokenAuthenticated, users);
+app.use('/players', tokenAuthenticated, players);
 app.use('/auth', authen);
 
 // catch 404 and forward to error handler
@@ -59,6 +58,34 @@ app.use(function(err, req, res, next) {
     error: {}
   });
 });
+
+function tokenAuthenticated(req, res, next){
+ // check header or url parameters or post parameters for token
+ var token = req.body.token || req.query.token || req.headers.token;
+
+ // decode token
+ if (token) {
+ // verifies secret and checks exp
+   jwt.verify(token, process.env.JWT_SECRET, function(err, decoded) {
+     if (err) {
+       //if you can't decode token
+       return res.status(403).json({ error: false, data: 'Failed to authenticate token.' });
+     } else {
+       // if everything is good, save to request for use in other routes
+       req.decodedUser = decoded;
+       next();
+     }
+   });
+  } else {
+   // if there is no token
+   // return an error
+   return res.status(403).json({
+       error: true,
+       data: 'No token provided.'
+   });
+ }
+
+}
 
 
 module.exports = app;

@@ -6,7 +6,19 @@ require('dotenv').load();
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+  knex('players').select().then(function(players, error){
+    if(error){
+      return res.status(500).json({
+        error: true,
+        message: 'Internal service error please try again later'
+      });
+    }
+
+    return res.status(200).json({
+      error: false,
+      players: players
+    })
+  })
 });
 
 router.delete('/', function(req, res, nex) {
@@ -23,12 +35,12 @@ router.delete('/', function(req, res, nex) {
 // TODO: need to ad super admin privlages and upsert
 // instead of  insert where not exist
 router.get('/updatedatabase', function(req, res, next) {
-  // if(!req.user.super_admin){
-  //   res.json(403, {
-  //     error: true,
-  //     message: 'You are not permitted to access this resource',
-  //   })
-  // }
+  if(!req.decodedUser.super_admin){
+    res.json(403, {
+      error: true,
+      message: 'You are not permitted to access this resource',
+    })
+  }
 
 
   var options = {
