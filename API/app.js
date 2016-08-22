@@ -9,6 +9,7 @@ var jwt = require('jsonwebtoken');
 var users = require('./routes/users');
 var players = require('./routes/players');
 var authen = require('./routes/auth');
+var drafts = require('./routes/drafts');
 
 var app = express();
 
@@ -24,6 +25,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use('/drafts', tokenAuthenticated, drafts);
 app.use('/users', tokenAuthenticated, users);
 app.use('/players', tokenAuthenticated, players);
 app.use('/auth', authen);

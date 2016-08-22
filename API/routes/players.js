@@ -36,7 +36,7 @@ router.delete('/', function(req, res, nex) {
 // instead of  insert where not exist
 router.get('/updatedatabase', function(req, res, next) {
   if(!req.decodedUser.super_admin){
-    res.json(403, {
+    return res.json(403, {
       error: true,
       message: 'You are not permitted to access this resource',
     })
