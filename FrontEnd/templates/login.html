@@ -1,41 +1,76 @@
+<nav class="top-bar" data-topbar role="navigation">
+  <ul class="title-area">
+    <li class="name">
+      <h1><a ng-href='#/home'>Fantasy Draft App</a></h1>
+    </li>
+    <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+    <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+  </ul>
+</nav>
 <div class="loginPageMain">
-  <h1>Fantasy Football Draft App</h1>
-  <div class="loginBox" ng-show='isLogin'>
-    <form ng-submit=login() name='loginForm'>
-      <h1>Please Login</h1>
-      <div class="input-group">
-        <span class="input-group-addon">Email</span>
-        <input type="text" class="form-control" placeholder="User Name">
+  <div class='centerContent'>
+    <h1>Fantasy Football Draft App</h1>
+    <tabset>
+      <tab class="loginBox"  heading="Login">
+        <div class="formWrap">
+          <form ng-submit=login() name='loginForm'>
+            <h1>Please Login</h1>
+            <div class='row'>
+              <div class="large-12 columns">
+                <div class="input-group">
+                  <span class="input-group-addon">Email</span>
+                  <input type="text" class="form-control" placeholder="Email">
+                </div>
+              </div>
+            </div>
+            <div class='row'>
+              <div class="large-12 columns">
+                <div class="input-group">
+                  <span class="input-group-addon">Password</span>
+                  <input type="password" class="form-control" placeholder="Password">
+                </div>
+              </div>
+            </div>
+            <input type="submit" class='button success'>
+          </form>
+        </div>
+      </tab>
+      <tab class="loginBox" heading='Sign Up'>
+        <div class="formWrap">
+          <form ng-submit=signup() name='loginForm'>
+            <h1>Sign Up </h1>
+            <div class='row'>
+              <div class="large-6 columns">
+                <div class="input-group">
+                  <span class="input-group-addon">First Name</span>
+                  <input type="password" class="form-control" placeholder="First Name">
+                </div>
+              </div>
+              <div class="large-6 columns">
+                <div class="input-group">
+                  <span class="input-group-addon">Last Name</span>
+                  <input type="password" class="form-control" placeholder="Last Name">
+                </div>
+              </div>
+            </div>
+            <div class='row'>
+              <div class="large-6 columns">
+                <div class="input-group">
+                  <span class="input-group-addon">Email</span>
+                  <input type="text" class="form-control" placeholder="Email">
+                </div>
+              </div>
+              <div class="large-6 columns">
+                <div class="input-group">
+                  <span class="input-group-addon">Password</span>
+                  <input type="password" class="form-control" placeholder="Password">
+                </div>
+              </div>
+            </div>
+            <input type="submit" class='button success'>
+          </form>
+        </tab>
       </div>
-      <div class="input-group">
-        <span class="input-group-addon">Password</span>
-        <input type="password" class="form-control" placeholder="Password">
-      </div>
-      <input type="submit">
-    </form>
-    <btn ng-click='isLogin = !isLogin'>Sign Up</btn>
-  </div>
-  <div class="loginBox" ng-show='!isLogin'>
-    <form ng-submit=signup() name='loginForm'>
-      <h1>Sign Up </h1>
-      <div class="input-group">
-        <span class="input-group-addon">First Name</span>
-        <input type="password" class="form-control" placeholder="Password">
-      </div>
-      <div class="input-group">
-        <span class="input-group-addon">Last Name</span>
-        <input type="password" class="form-control" placeholder="Password">
-      </div>
-      <div class="input-group">
-        <span class="input-group-addon">Email</span>
-        <input type="text" class="form-control" placeholder="User Name">
-      </div>
-      <div class="input-group">
-        <span class="input-group-addon">Password</span>
-        <input type="password" class="form-control" placeholder="Password">
-      </div>
-      <input type="submit">
-    </form>
-    <btn ng-click='isLogin = !isLogin'>Login</btn>
+    </tabset>
   </div>
 </div>

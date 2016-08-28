@@ -12,3 +12,11 @@ app.controller('LoginController', ['$scope', function($scope){
 app.controller('DraftController', ['$scope', function($scope){
   $scope.title = 'Draft Day';
 }]);
+
+app.controller('HomeController', ['$scope', function($scope){
+  $scope.navs = 'Draft Day';
+}]);
+
+app.controller('CreateLeagueController', ['$scope', function($scope){
+  $scope.navs = 'Draft Day';
+}]);

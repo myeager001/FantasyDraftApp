@@ -1,14 +1,46 @@
 body{
-  background-color: blue;
+  background-color: rgb(200, 200, 200);
+}
+.centerContent{
+  margin-top: 6%;
+  width:60%;
+}
+.tabs-content > .content {
+  padding: 0;
+}
+.createLeagueBox{
+  margin: 2%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.formWrap{
+  background-color: white;
+  border: 2px black;
+  padding: 5% 5%;
+  border-radius: 10px;
+  border-top-left-radius: 0px;
+}
+.goBtn{
+  margin-right: 20px;
+  width: 70px;
 }
 .loginPageMain{
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   height: 800px;
   width: 100%;
 }
 .loginBox{
   background-color: white;
+}
+.right{
+  padding-top: 10px
+}
+.tabsRow{
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  width: 100%;
 }

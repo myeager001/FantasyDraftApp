@@ -1,4 +1,4 @@
-var app = angular.module('DraftApp', ['ui.router']);
+var app = angular.module('DraftApp', ['ui.router', 'ngStorage', 'mm.foundation']);
 
 app.config(['$stateProvider', '$urlRouterProvider', '$httpProvider',
     function($stateProvider, $urlRouterProvider, $httpProvider) {
@@ -9,14 +9,24 @@ app.config(['$stateProvider', '$urlRouterProvider', '$httpProvider',
     // Application routes
     $stateProvider
         .state('draftBoard', {
-            url: '/draft',
-            templateUrl: 'templates/draft.html',
-            controller: 'DraftController',
+          url: '/draft',
+          templateUrl: 'templates/draft.html',
+          controller: 'DraftController',
+        })
+        .state('home', {
+          url: '/home',
+          templateUrl: 'templates/home.html',
+          controller: 'HomeController',
+        })
+        .state('createLeague', {
+          url: '/createLeague',
+          templateUrl: 'templates/createLeague.html',
+          controller: 'CreateLeagueController'
         })
         .state('login', {
-            url: '/',
-            templateUrl: 'templates/login.html',
-            controller: 'LoginController'
+          url: '/',
+          templateUrl: 'templates/login.html',
+          controller: 'LoginController'
         });
 
     $httpProvider.interceptors.push(['$q', '$location', '$localStorage', function ($q, $location, $localStorage) {
