@@ -1,6 +1,9 @@
 body{
   background-color: rgb(200, 200, 200);
 }
+table{
+  width: 100%;
+}
 .centerContent{
   margin-top: 30px;
   width:60%;

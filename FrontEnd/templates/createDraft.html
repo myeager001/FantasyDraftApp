@@ -1,1 +1,75 @@
-<h1>create a draft {{leagueId}}</h1>
+<nav class="top-bar" data-topbar role="navigation">
+  <ul class="title-area">
+    <li class="name">
+      <h1><a ng-href='#/home'>Fantasy Draft App</a></h1>
+    </li>
+     <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+    <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+  </ul>
+  <ul class="right">
+    <a class='goBtn' dropdown-toggle="#dropdown-example-2">Go</a>
+    <ul id="dropdown-example-2" class="f-dropdown">
+      <li><a href="#/home">Home</a></li>
+      <li><a href="#/joinDraft">Join a league Draft</a></li>
+    </ul>
+  </ul>
+</nav>
+<div class='createLeagueBox'>
+  <div class='centerContent'>
+  <h1 class='pageTile'>Set up your draft</h1>
+  <div class="formWrap2">
+    <form ng-submit=createLeague() name='leagueSignup'>
+      <div class='row'>
+        <h3 class='subHeading'>League Year</h3>
+      </div>
+      <div class='row'>
+        <div class="large-12 columns">
+          <label>League Year
+            <select ng-model=info.teams ng-change='change()'>
+              <option value='2016'>2016</option>
+              <option value='2017'>2017</option>
+              <option value='2018'>2018</option>
+              <option value='2019'>2019</option>
+              <option value='2020'>2020</option>
+            </select>
+          </label>
+        </div>
+      </div>
+      <div class='row'>
+        <h3 class='subHeading'>Draft Order</h3>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th width='80%'>Player</th>
+            <th>Draft Position</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat='user in users'>
+            <td>player</td>
+            <td>
+              <div class="medium-8 columns">
+                <input type="text" ng-model='info.name'placeholder="{{$index+1}}" />
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <!-- <div class="row" ng-repeat='user in users'>
+        <div class="large-6 columns">
+          <h3>player</h3>
+        </div>
+        <div class="medium-2 columns">
+          <input type="text" ng-model='info.name'placeholder="name" />
+        </div>
+      </div> -->
+      <div class="row">
+        <div class="large-6 columns">
+          <input type="submit" class='button success'>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+</div>

@@ -2,7 +2,6 @@ exports.up = function(knex, Promise) {
   return knex.schema.createTable('drafts', function(drafts){
     drafts.increments().primary();
     drafts.integer('year');
-    drafts.integer('number_of_teams');
     drafts.integer('league_id').references('id').inTable('leagues').onDelete('cascade').notNullable();
   }).createTable('rounds', function(rounds){
     rounds.increments().primary();

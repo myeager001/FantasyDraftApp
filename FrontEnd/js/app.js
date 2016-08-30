@@ -26,7 +26,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$httpProvider',
         .state('createDraft', {
           url: '/createDraft/:leagueId',
           templateUrl: 'templates/createDraft.html',
-          controller: 'createDraftController'
+          controller: 'CreateDraftController'
         })
         .state('login', {
           url: '/',

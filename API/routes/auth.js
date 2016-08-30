@@ -87,19 +87,53 @@ router.post('/signup', function(req, res, next) {
       };
 
       knex('users').insert(user, 'id').then(function(id){
-        res.status(200).json({
-          error: false,
-          message: "Succsessfully signed up.  Please log in"
+        console.log('here');
+        knex('invited_emails').select('league_id').where({email: user.email}).then(function(entries){
+          console.log(entries);
+          if(entries.length === 0){
+            return res.status(200).json({
+              error: false,
+              message: "Succsessfully signed up.  Please log in"
+            });
+          }
+
+          var leagueUsers = entries.map(function(entry){
+            leagueObject = {};
+            leagueObject.league_id = entry.league_id
+            leagueObject.user_id = id[0];
+            return leagueObject;
+          });
+          console.log(leagueUsers);
+          knex('league_users').insert(leagueUsers).then(function(){
+            knex('invited_emails').delete().where({email: user.email}).then(function(){
+              return res.status(200).json({
+                error: false,
+                message: "Succsessfully signed up.  Please log in"
+              });
+            }).catch(function(err){
+              return res.status(500).json({
+                error: true,
+                message: 'There was a problem with the sign up please try again later.'
+              });
+            });
+          }).catch(function(err){
+            return res.status(500).json({
+              error: true,
+              message: 'There was a problem with the sign up please try again later.'
+            });
+          });
+        }).catch(function(err){
+          return res.status(500).json({
+            error: true,
+            message: 'There was a problem with the sign up please try again later.'
+          });
         });
-        return;
       }).catch(function(err){
-        res.status(500).json({
+        return res.status(500).json({
           error: true,
           message: 'There was a problem with the sign up please try again later.'
         });
-        return;
       });
-
     });
   }).catch(function(err){
     res.status(500).json({

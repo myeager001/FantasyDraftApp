@@ -25,10 +25,33 @@
           <h5>Roster Size: {{league.id}}</h5>
         </div>
         <button class='button tiny' ng-click='expandPlayers = !expandPlayers;'>Players</button>
+        <button ng-show='league.number_of_teams == league.users.length;' class='button tiny' ng-click='editDraft(league.id);'>Edit Draft</button>
         <div ng-show='expandPlayers'>
-          <ul>
-            <li ng-repeat='player in league.users'>Name: {{player.first_name}} {{player.last_name}}</li>
-          </ul>
+          <h3>Users</h3>
+          <table>
+            <thead>
+              <th>Info</th>
+              <th>Joined</th>
+            </thead>
+            <tbody>
+              <tr>
+                <td><em>Have Accounts</em></td>
+                <td></td>
+              </tr>
+              <tr ng-repeat='player in league.users'>
+                <td>Name: {{player.first_name}} {{player.last_name}} Email: {{player.email}}</td>
+                <td>{{player.joined}}</td>
+              </tr>
+              <tr>
+                <td><em>Invited<em></td>
+                <td></td>
+              </tr>
+              <tr ng-repeat='player in league.invitedUsers'>
+                <td>Email:{{player.email}}</td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
         </div>
 
       </div>

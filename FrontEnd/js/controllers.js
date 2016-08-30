@@ -18,12 +18,15 @@ app.controller('DraftController', ['$scope', function($scope){
   $scope.title = 'Draft Day';
 }]);
 
-app.controller('HomeController', ['$scope', 'APIService', function($scope, apiService){
+app.controller('HomeController', ['$scope', 'APIService', '$state', function($scope, apiService, $state){
   $scope.leagues={};
   apiService.getLeagues().then(function(leagues){
     $scope.leagues = leagues;
     $scope.$apply();
   });
+  $scope.editDraft = function(id){
+    $state.go('createDraft', {leagueId: id});
+  };
 
 }]);
 
@@ -43,6 +46,7 @@ app.controller('CreateLeagueController', ['$scope', 'APIService', '$state', func
   };
 }]);
 
-app.controller('CreateDraftController', ['$scope', 'APIService', '$state', '$stateParms', function($scope, apiService, $state, $stateParms){
-  $scope.leagueId = $stateParms.leagueId;
+app.controller('CreateDraftController', ['$scope', 'APIService', '$state', function($scope, apiService, $state){
+  $scope.leagueId = $state.params.leagueId;
+  $scope.users = [1,2,3,4,5]
 }]);
