@@ -7,11 +7,18 @@ var model = {};
 model.User = Bookshelf.Model.extend({
     tableName: 'users',
     leagues: function (){
-      return this.hasMany(model.League).through(model.LeagueUsers);
+      return this.belongsToMany(model.League).through(model.LeagueUser);
     },
 });
 
-model.LeagueUsers = Bookshelf.Model.extend({
+model.InvitedUser = Bookshelf.Model.extend({
+    tableName: 'invited_emails',
+    league: function(){
+      this.belongsTo(model.League)
+    }
+})
+
+model.LeagueUser = Bookshelf.Model.extend({
     tableName: 'league_users',
     user: function (){
       return this.belongsTo(model.User);
@@ -23,8 +30,11 @@ model.LeagueUsers = Bookshelf.Model.extend({
 
 model.League = Bookshelf.Model.extend({
     tableName: 'leagues',
+    invitedUsers: function (){
+      return this.hasMany(model.InvitedUser);
+    },
     users: function (){
-      return this.hasMany(model.User).through(model.LeagueUsers);
+      return this.belongsToMany(model.User).through(model.LeagueUser);
     },
     drafts: function (){
       return this.hasMany(model.Draft);

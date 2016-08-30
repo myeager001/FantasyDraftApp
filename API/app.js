@@ -5,11 +5,13 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var jwt = require('jsonwebtoken');
+var cors = require('cors');
 
 var users = require('./routes/users');
 var players = require('./routes/players');
 var authen = require('./routes/auth');
 var drafts = require('./routes/drafts');
+var leagues = require('./routes/leagues')
 
 var app = express();
 
@@ -24,10 +26,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(cors());
 
 app.use('/drafts', tokenAuthenticated, drafts);
 app.use('/users', tokenAuthenticated, users);
 app.use('/players', tokenAuthenticated, players);
+app.use('/leagues', tokenAuthenticated, leagues);
 app.use('/auth', authen);
 
 // catch 404 and forward to error handler

@@ -6,7 +6,7 @@ module.exports = {
   development: {
     client: 'pg',
     connection: {
-      database: 'football_utopia',
+      database: 'football_utopia_copy',
       password: 'password'
     },
   },

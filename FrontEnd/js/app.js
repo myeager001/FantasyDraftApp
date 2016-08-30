@@ -9,8 +9,8 @@ app.config(['$stateProvider', '$urlRouterProvider', '$httpProvider',
     // Application routes
     $stateProvider
         .state('draftBoard', {
-          url: '/draft',
-          templateUrl: 'templates/draft.html',
+          url: '/joinDraft',
+          templateUrl: 'templates/joinDraft.html',
           controller: 'DraftController',
         })
         .state('home', {
@@ -22,6 +22,11 @@ app.config(['$stateProvider', '$urlRouterProvider', '$httpProvider',
           url: '/createLeague',
           templateUrl: 'templates/createLeague.html',
           controller: 'CreateLeagueController'
+        })
+        .state('createDraft', {
+          url: '/createDraft/:leagueId',
+          templateUrl: 'templates/createDraft.html',
+          controller: 'createDraftController'
         })
         .state('login', {
           url: '/',

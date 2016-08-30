@@ -10,14 +10,28 @@
     <a class='goBtn' dropdown-toggle="#dropdown-example-2">Go</a>
     <ul id="dropdown-example-2" class="f-dropdown">
       <li><a href="#/createLeague">Create a League</a></li>
-      <!-- <li ng-repeat="(label, url) in linkItems">
-        <a href="{{url}}" target="_blank">{{label}}</a>
-      </li> -->
+      <li><a href="#/joinDraft">Join a league Draft</a></li>
     </ul>
   </ul>
 </nav>
 <div class='homeContent'>
-  <div ng-repeat='leauge in leagues'>
-    <h1>{{leauge.name}}</h1>  
-  </div>
+  <div class='centerContent'>
+    <h1 class='pageTile'>My leagues</h1>
+    <div ng-repeat='league in leagues'>
+      <div class="formWrap2">
+        <div class='topBar'>
+          <h5>Name: {{league.name}}</h5>
+          <h5>Number of Teams: {{league.number_of_teams}}</h5>
+          <h5>Roster Size: {{league.id}}</h5>
+        </div>
+        <button class='button tiny' ng-click='expandPlayers = !expandPlayers;'>Players</button>
+        <div ng-show='expandPlayers'>
+          <ul>
+            <li ng-repeat='player in league.users'>Name: {{player.first_name}} {{player.last_name}}</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  <div>
 <div>

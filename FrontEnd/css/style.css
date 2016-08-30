@@ -2,7 +2,7 @@ body{
   background-color: rgb(200, 200, 200);
 }
 .centerContent{
-  margin-top: 6%;
+  margin-top: 30px;
   width:60%;
 }
 .tabs-content > .content {
@@ -21,9 +21,21 @@ body{
   border-radius: 10px;
   border-top-left-radius: 0px;
 }
+.formWrap2{
+  background-color: white;
+  border: 2px black;
+  padding: 5% 5%;
+  border-radius: 10px;
+  margin: 3% 0;
+}
 .goBtn{
   margin-right: 20px;
   width: 70px;
+}
+.homeContent{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .loginPageMain{
   display: flex;
@@ -35,12 +47,23 @@ body{
 .loginBox{
   background-color: white;
 }
+.pageTitle{
+  margin-top: 0px;
+}
 .right{
-  padding-top: 10px
+  padding-top: 10px;
+}
+.subHeading{
+  margin: 20px 0;
 }
 .tabsRow{
   display: flex;
   flex-direction: row;
   align-items: flex-start;
   width: 100%;
+}
+.topBar{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }

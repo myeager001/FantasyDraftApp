@@ -10,48 +10,84 @@
     <a class='goBtn' dropdown-toggle="#dropdown-example-2">Go</a>
     <ul id="dropdown-example-2" class="f-dropdown">
       <li><a href="#/home">Home</a></li>
+      <li><a href="#/joinDraft">Join a league Draft</a></li>
     </ul>
   </ul>
 </nav>
 <div class='createLeagueBox'>
-  <h1>Create A League</h1>
-  <form>
-    <div class="row">
-      <div class="large-12 columns">
-        <label>League Name
-          <input type="text" placeholder="name" />
-        </label>
+  <div class='centerContent'>
+  <h1 class='pageTile'>Create A League</h1>
+  <div class="formWrap2">
+    <form ng-submit=createLeague() name='leagueSignup'>
+      <div class='row'>
+        <h3 class='subHeading'>League Information</h3>
       </div>
-    </div>
+      <div class="row">
+        <div class="large-12 columns">
+          <label>League Name
+            <input type="text" ng-model='info.name'placeholder="name" />
+          </label>
+        </div>
+      </div>
 
-    <div class="row">
-      <div class="large-6 columns">
-        <label>Select Box
-          <select>
-            <option value="husker">Husker</option>
-            <option value="starbuck">Starbuck</option>
-            <option value="hotdog">Hot Dog</option>
-            <option value="apollo">Apollo</option>
-          </select>
-        </label>
+      <div class="row">
+        <div class="large-6 columns">
+          <label>Number of Teams
+            <select ng-model=info.teams ng-change='change()'>
+              <option value='4'>4</option>
+              <option value='5'>5</option>
+              <option value='6'>6</option>
+              <option value='7'>7</option>
+              <option value='8'>8</option>
+              <option value='9'>9</option>
+              <option value='10'>10</option>
+              <option value='11'>11</option>
+              <option value='12'>12</option>
+              <option value='13'>13</option>
+              <option value='14'>14</option>
+              <option value='15'>15</option>
+              <option value='16'>16</option>
+            </select>
+          </label>
+        </div>
+        <div class="large-6 columns">
+          <label>Roster Size
+            <select ng-model=info.rosterSize>
+              <option value=10>10</option>
+              <option value=11>11</option>
+              <option value=12>12</option>
+              <option value=13>13</option>
+              <option value=14>14</option>
+              <option value=15>15</option>
+              <option value=16>16</option>
+              <option value=17>17</option>
+              <option value=18>18</option>
+              <option value=19>19</option>
+              <option value=20>20</option>
+              <option value=21>21</option>
+              <option value=22>22</option>
+              <option value=23>23</option>
+              <option value=24>24</option>
+            </select>
+          </label>
+        </div>
       </div>
-      <div class="large-6 columns">
-        <label>Select Box
-          <select>
-            <option value="husker">Husker</option>
-            <option value="starbuck">Starbuck</option>
-            <option value="hotdog">Hot Dog</option>
-            <option value="apollo">Apollo</option>
-          </select>
-        </label>
+      <div class='row'>
+        <h3 class='subHeading'>Player Information</h3>
       </div>
-    </div>
-    <div class="row">
-      <div class="large-12 columns">
-        <label>Textarea Label
-          <textarea placeholder="small-12.columns"></textarea>
-        </label>
+      <div class="row">
+        <div class="large-6 columns end" ng-repeat='i in info.emails track by $index'>
+            <label>Player {{$index +1}}'s Email
+              <input type="text" ng-model='info.emails[$index]'placeholder="email" />
+            </label>
+        </div>
       </div>
-    </div>
-  </form>
+      <div class="row">
+        <div class="large-6 columns">
+            <input type="submit" class='button success'>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
 </div>
