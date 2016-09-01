@@ -18,14 +18,14 @@
   <div class='centerContent'>
   <h1 class='pageTile'>Set up your draft</h1>
   <div class="formWrap2">
-    <form ng-submit=createLeague() name='leagueSignup'>
+    <form ng-submit=createDraft() name='leagueSignup'>
       <div class='row'>
         <h3 class='subHeading'>League Year</h3>
       </div>
       <div class='row'>
         <div class="large-12 columns">
           <label>League Year
-            <select ng-model=info.teams ng-change='change()'>
+            <select ng-model='year' ng-change='change()'>
               <option value='2016'>2016</option>
               <option value='2017'>2017</option>
               <option value='2018'>2018</option>
@@ -47,10 +47,10 @@
         </thead>
         <tbody>
           <tr ng-repeat='user in users'>
-            <td>player</td>
+            <td>{{user.first_name}} {{user.last_name}}</td>
             <td>
               <div class="medium-8 columns">
-                <input type="text" ng-model='info.name'placeholder="{{$index+1}}" />
+                <input type="text" ng-model='user.position' placeholder="{{$index+1}}" />
               </div>
             </td>
           </tr>

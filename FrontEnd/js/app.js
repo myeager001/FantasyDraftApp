@@ -8,7 +8,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$httpProvider',
 
     // Application routes
     $stateProvider
-        .state('draftBoard', {
+        .state('DraftController', {
           url: '/joinDraft',
           templateUrl: 'templates/joinDraft.html',
           controller: 'DraftController',
@@ -32,6 +32,11 @@ app.config(['$stateProvider', '$urlRouterProvider', '$httpProvider',
           url: '/',
           templateUrl: 'templates/login.html',
           controller: 'LoginController'
+        })
+        .state('draftBoard', {
+          url: '/draftBoard/:draftId',
+          templateUrl: 'templates/draftBoard.html',
+          controller: 'DraftBoardController'
         });
 
     $httpProvider.interceptors.push(['$q', '$location', '$localStorage', function ($q, $location, $localStorage) {

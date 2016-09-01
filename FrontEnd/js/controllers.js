@@ -27,6 +27,10 @@ app.controller('HomeController', ['$scope', 'APIService', '$state', function($sc
   $scope.editDraft = function(id){
     $state.go('createDraft', {leagueId: id});
   };
+  $scope.startDraft = function (draftId){
+    console.log(draftId)
+    $state.go('draftBoard', {draftId: draftId});
+  };
 
 }]);
 
@@ -48,5 +52,28 @@ app.controller('CreateLeagueController', ['$scope', 'APIService', '$state', func
 
 app.controller('CreateDraftController', ['$scope', 'APIService', '$state', function($scope, apiService, $state){
   $scope.leagueId = $state.params.leagueId;
-  $scope.users = [1,2,3,4,5]
+  apiService.getLeagueById($state.params.leagueId).then(function(league){
+    $scope.users = league.users;
+    $scope.$apply();
+  });
+  $scope.createDraft= function(){
+    var draft = {};
+    draft.year = $scope.year;
+    draft.league_id = $scope.leagueId;
+    var users = $scope.users.map(function(user){
+      var userObj = {};
+      userObj.draft_position = user.position;
+      userObj.user_id = user.id;
+      return userObj;
+    });
+    draft.users = users;
+    apiService.createDraft(draft).then(function(draft){
+      $state.go('home');
+    });
+  };
+}]);
+
+app.controller('DraftBoardController', ['$scope', '$stateParams', function($scope, $stateParams){
+  $scope.draftId = $stateParams.draftId;
+  console.log($scope.draftId)
 }]);

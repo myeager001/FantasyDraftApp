@@ -17,10 +17,27 @@ app.factory('APIService', ['$http', function($http){
       // }
     });
   };
+  User.getLeagueById = function(id){
+    return new Promise(function(resolve, reject){
+      $http.get(apiBase + '/leagues/' + id).then(function(league){
+        resolve(league.data.league)
+      }).catch(function(error){
+        reject(error);
+      });
+    })
+  }
+  User.createDraft = function(draft){
+    return new Promise(function(resolve, reject){
+      $http.post(apiBase + '/drafts', draft).then(function(draft){
+        resolve(draft.data.draft);
+      }).catch(function(error){
+        reject(error);
+      });
+    });
+  }
   User.createLeague = function(information){
     return new Promise(function(resolve, reject){
       $http.post(apiBase + '/leagues', information).then(function(league){
-          console.log(league);
           league = league.data.league;
           resolve(league);
       }).catch(function(error){

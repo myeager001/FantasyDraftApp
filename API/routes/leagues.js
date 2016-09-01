@@ -5,15 +5,26 @@ var models = require('../models');
 var Bookshelf = require('bookshelf')(knex);
 
 router.get('/', function(req, res, next){
-  var Leagues = Bookshelf.Collection.extend({
-    model: models.League
-  });
   models.User.forge({id: req.decodedUser.id}).fetch({withRelated: ['leagues', 'leagues.drafts', 'leagues.users', 'leagues.invitedUsers']}).then(function(leagues){
     if(!leagues){
-      res.status(200).json({error: false, leagues:[]});
-    }else{
-      res.status(200).json({error: false, userLeagues: leagues});
+      return res.status(200).json({error: false, leagues:[]});
     }
+
+    return res.status(200).json({error: false, userLeagues: leagues});
+
+  }).catch(function(error){
+    res.status(500).json({error: true, data: error});
+  });
+});
+
+router.get('/:id', function(req, res, next){
+  console.log(req.params.id);
+  models.League.forge({id: req.params.id}).fetch({withRelated: ['users']}).then(function(league){
+    if(!league){
+      return res.status(204).json({error: false, league: null});
+    }
+
+    return res.status(200).json({error: false, league: league});
   }).catch(function(error){
     res.status(500).json({error: true, data: error});
   });

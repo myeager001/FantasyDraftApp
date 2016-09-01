@@ -24,7 +24,7 @@
           <h5>Number of Teams: {{league.number_of_teams}}</h5>
           <h5>Roster Size: {{league.id}}</h5>
         </div>
-        <button class='button tiny' ng-click='expandPlayers = !expandPlayers;'>Players</button>
+        <button class='button tiny' ng-click='expandPlayers = !expandPlayers;'>Players and Drafts</button>
         <button ng-show='league.number_of_teams == league.users.length;' class='button tiny' ng-click='editDraft(league.id);'>Edit Draft</button>
         <div ng-show='expandPlayers'>
           <h3>Users</h3>
@@ -50,6 +50,18 @@
                 <td>Email:{{player.email}}</td>
                 <td></td>
               </tr>
+            </tbody>
+          </table>
+          <h3>Drafts</h3>
+          <table>
+            <thead>
+              <th>Year</th>
+              <th></th>
+            </thead>
+            <tbody>
+              <tr ng-repeat='draft in league.drafts'>
+                <td>{{draft.year}}</td>
+                <td><button class='button tiny' ng-click='startDraft(draft.id)'>Start Draft</button></td>
             </tbody>
           </table>
         </div>
