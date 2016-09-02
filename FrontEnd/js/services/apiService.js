@@ -1,6 +1,15 @@
 app.factory('APIService', ['$http', function($http){
   var User = {};
   var apiBase = 'http://localhost:3333';
+  User.getDraft = function(id){
+    return new Promise(function(resolve, reject){
+      $http.get(apiBase + '/drafts/' + id).then(function(draft){
+        resolve(draft.data.draft);
+      }).catch(function(error){
+        reject(error);
+      });
+    });
+  };
   User.getLeagues = function(){
     return new Promise(function(resolve, reject){
       // if(User.leagues){
@@ -20,12 +29,12 @@ app.factory('APIService', ['$http', function($http){
   User.getLeagueById = function(id){
     return new Promise(function(resolve, reject){
       $http.get(apiBase + '/leagues/' + id).then(function(league){
-        resolve(league.data.league)
+        resolve(league.data.league);
       }).catch(function(error){
         reject(error);
       });
-    })
-  }
+    });
+  };
   User.createDraft = function(draft){
     return new Promise(function(resolve, reject){
       $http.post(apiBase + '/drafts', draft).then(function(draft){
@@ -34,7 +43,7 @@ app.factory('APIService', ['$http', function($http){
         reject(error);
       });
     });
-  }
+  };
   User.createLeague = function(information){
     return new Promise(function(resolve, reject){
       $http.post(apiBase + '/leagues', information).then(function(league){

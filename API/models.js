@@ -9,6 +9,9 @@ model.User = Bookshelf.Model.extend({
     leagues: function (){
       return this.belongsToMany(model.League).through(model.LeagueUser);
     },
+    draftOrders: function (){
+      return this.hasMany(model.DraftOrder);
+    }
 });
 
 model.InvitedUser = Bookshelf.Model.extend({
@@ -50,7 +53,7 @@ model.Draft = Bookshelf.Model.extend({
       return this.hasMany(model.Round).query('orderBy', 'round_number', 'asc');
     },
     draftOrders: function (){
-      return this.hasMany(model.DraftOrder);
+      return this.hasMany(model.DraftOrder).query('orderBy', 'draft_position', 'asc');
     }
 });
 
@@ -95,6 +98,9 @@ model.DraftOrder = Bookshelf.Model.extend({
     tableName: 'draft_orders',
     draft: function(){
        this.belogsTo(model.Draft);
+     },
+    user: function(){
+       this.belongsTo(model.User);
      }
 });
 

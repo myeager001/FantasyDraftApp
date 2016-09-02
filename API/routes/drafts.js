@@ -5,7 +5,7 @@ var models = require('../models');
 var Bookshelf = require('bookshelf')(knex);
 
 router.get('/:id', function(req, res, next){
-  models.Draft.forge({id: req.params.id}).fetch({withRelated: ['rounds','rounds.picks', 'rounds.picks.player', 'league',]})
+  models.Draft.forge({id: req.params.id}).fetch({withRelated: ['rounds','rounds.picks', 'rounds.picks.player', 'draftOrders',  'league']})
   .then(function(draft){
     res.status(200).json({error: false, draft: draft});
   }).catch(function(error){
@@ -74,7 +74,7 @@ router.post('/startDraft', function(req, res, next){
           var merged = [].concat.apply([], picks);
           knex('picks').insert(merged).then(function(){
             console.log('here');
-            models.Draft.forge({id: req.body.draft_id}).fetch({withRelated: ['rounds', 'rounds.picks']})
+            models.Draft.forge({id: req.body.draft_id}).fetch({withRelated: ['rounds', 'rounds.picks', 'rounds.picks.player', 'draftOrders', 'draftOrder.user']})
             .then(function(draft){
               return res.status(200).json({error: false, draft: draft});
             });

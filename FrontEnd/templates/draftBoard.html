@@ -30,5 +30,19 @@
     </div>
 </div>
 <div ng-show="isDraft">
-  <h1>this is draft</h1>
+  <div class='draftRow'>
+    <div class='spacer'>
+    </div>
+    <div ng-repeat='user in draft.draftOrders' class='draftName'>
+      <h3>Player #{{user.id}}</h3>
+    </div>
+  </div>
+  <div ng-repeat='round in draft.rounds' class=draftRow>
+    <div class='spacer'>
+      <h3>{{round.round_number}}</h3>
+    </div>
+    <div ng-repeat='pick in round.picks' class='draftBox'>
+
+    </div>
+  </div>
 </div>
