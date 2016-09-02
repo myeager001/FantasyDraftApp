@@ -8,6 +8,9 @@ table{
   margin-top: 30px;
   width:60%;
 }
+.centerForm{
+  width: 30%;
+}
 .tabs-content > .content {
   padding: 0;
 }
@@ -52,6 +55,12 @@ table{
 }
 .pageTitle{
   margin-top: 0px;
+}
+.popup{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 600px;
 }
 .right{
   padding-top: 10px;

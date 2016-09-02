@@ -59,9 +59,17 @@ app.factory('APIService', ['$http', function($http){
   User.signup = function(credentials){
     return new Promise(function(resolve, reject){
       $http.post(apiBase + '/auth/signup', credentials).then(function(message){
-        console.log('message', message);
         message = message.data.data;
         resolve(message);
+      }).catch(function(error){
+        reject(error);
+      });
+    });
+  };
+  User.startDraft = function(draftDetails){
+    return new Promise(function(resolve, reject){
+      $http.post(apiBase + '/drafts/startDraft', draftDetails).then(function(token){
+        resolve(token.data.token);
       }).catch(function(error){
         reject(error);
       });

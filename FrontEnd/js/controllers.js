@@ -73,7 +73,27 @@ app.controller('CreateDraftController', ['$scope', 'APIService', '$state', funct
   };
 }]);
 
-app.controller('DraftBoardController', ['$scope', '$stateParams', function($scope, $stateParams){
+app.controller('DraftBoardController', ['$scope', '$stateParams', 'APIService', 'socketService',function($scope, $stateParams, apiService, socketService){
   $scope.draftId = $stateParams.draftId;
-  console.log($scope.draftId)
+  $scope.isDraft = false;
+  var socket;
+  $scope.startDraft = function(){
+    var draftInfo = {};
+    draftInfo.draft_id = $scope.draftId;
+    draftInfo.secret = $scope.draftSecret;
+    console.log(draftInfo);
+    apiService.startDraft(draftInfo).then(function(token){
+      console.log(token);
+      $scope.isDraft = true;
+      $scope.$apply();
+      socket = socketService.getConnection();
+
+      socket.on('status', function(message){
+        console.log(message);
+      })
+    });
+  };
+
+
+
 }]);
